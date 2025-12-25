@@ -1,6 +1,6 @@
-# 🌌 Space Explorer Portal
+# 🌌 COSMOS-Space-Dashboard Space Explorer Portal
 
-**Space Explorer** is an interactive web application built using **HTML**, **Tailwind CSS**, and **JavaScript**. The project aims to bring space closer to users by displaying real-time, authentic data through global application programming interfaces (APIs).
+This project is a dynamic Space Exploration Dashboard designed to showcase advanced front-end development and asynchronous programming skills. It provides a real-time gateway to space data, transforming complex API responses into an engaging and interactive user experience.
 
 ---
 
@@ -19,3 +19,20 @@
 ![SolarSystem API](https://img.shields.io/badge/Data-SolarSystem-FFD700?style=for-the-badge&logo=google-planet&logoColor=black)
 
 ---
+
+📌 Project Overview
+
+The purpose of this project:
+
+Asynchronous Data Fetching: Master the use of Fetch API to integrate multiple third-party services (NASA, SpaceDevs, and Solar System OpenData).
+
+Dynamic Content Rendering: Implement logic to transform JSON data into responsive HTML components (Cards, Modals, and Tables) using Tailwind CSS.
+
+Interactive Data Presentation: Build a seamless way to explore the solar system and upcoming rocket launches with real-time updates.
+
+Responsive Web Design: Ensure a flawless experience across all devices, from mobile phones to large desktop monitors, using Tailwind's utility-first approach.
+
+Clean Architecture: Practice writing modular JavaScript and maintaining a clean, organized project structure for better scalability.
+
+---
+
