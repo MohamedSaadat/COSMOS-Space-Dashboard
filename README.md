@@ -30,3 +30,10 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 
 ---
 
+## 🔧 How It Works (JavaScript Logic)
+
+- **Today in Space Section** Displays the "Astronomy Picture of the Day" sourced directly from NASA's API. This section features a stunning daily space image accompanied by a detailed scientific explanation and metadata.
+- **Launches Section** A real-time tracker for upcoming space missions using the SpaceDevs Launches API. It provides comprehensive details about each mission, including launch service providers, rocket types, and scheduled liftoff dates.
+- **Planets Section** An interactive guide to our solar system powered by the Solar System OpenData API. This section presents all planets with key astronomical data such as gravity, dimensions, and orbital details in a visually appealing and organized layout.
+
+---
