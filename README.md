@@ -60,3 +60,46 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 | **GitHub Pages** | Hosting the live production version of the project.                    |
 
 ---
+
+## 📁 Project Structure
+
+Personal-Portfolio/
+│
+├── index.html                # Main portfolio page
+│
+├── assets/
+│   ├── css/
+│   │   └── style.css         # Main styles (global / Tailwind output)
+│   │
+│   ├── js/
+│   │   └── index.js          # JavaScript logic (scroll, carousel, interactions)
+│   │
+│   └── images/                 # Images & assets (avatars, icons, etc.)
+│
+└── README.md                 # Project documentation
+
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+You are free to modify, reuse, and build upon it for personal or commercial use.
+
+---
+
+## 🖥️ Live Demo
+
+👉 **View the Dashboard Online:**
+
+```
+https://mohamedsaadat.github.io/COSMOS-Space-Dashboard/
+```
+
+## 📧 Contact
+
+If you’d like to collaborate or discuss UI/UX or front-end design:
+
+**Author:** Mohamed Saadat
+
+**Email:** mohamed93saadat@gmail.com
+
+**GitHub:** [https://github.com/MohamedSaadat](https://github.com/MohamedSaadat)
