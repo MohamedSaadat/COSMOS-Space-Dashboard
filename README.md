@@ -22,17 +22,12 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 
 📌 Project Overview
 
-The purpose of this project:
-
-Asynchronous Data Fetching: Master the use of Fetch API to integrate multiple third-party services (NASA, SpaceDevs, and Solar System OpenData).
-
-Dynamic Content Rendering: Implement logic to transform JSON data into responsive HTML components (Cards, Modals, and Tables) using Tailwind CSS.
-
-Interactive Data Presentation: Build a seamless way to explore the solar system and upcoming rocket launches with real-time updates.
-
-Responsive Web Design: Ensure a flawless experience across all devices, from mobile phones to large desktop monitors, using Tailwind's utility-first approach.
-
-Clean Architecture: Practice writing modular JavaScript and maintaining a clean, organized project structure for better scalability.
+**The purpose of this project:**
+- Asynchronous Data Fetching: Master the use of Fetch API to integrate multiple third-party services (NASA, SpaceDevs, and Solar System OpenData).
+- Dynamic Content Rendering: Implement logic to transform JSON data into responsive HTML components (Cards, Modals, and Tables) using Tailwind CSS.
+- Interactive Data Presentation: Build a seamless way to explore the solar system and upcoming rocket launches with real-time updates.
+- Responsive Web Design: Ensure a flawless experience across all devices, from mobile phones to large desktop monitors, using Tailwind's utility-first approach.
+- Clean Architecture: Practice writing modular JavaScript and maintaining a clean, organized project structure for better scalability.
 
 ---
 
