@@ -15,8 +15,7 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 ![License-MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Project Status-Active](https://img.shields.io/badge/Status-Active-blue?style=for-the-badge)
 ![NASA API](https://img.shields.io/badge/Data-NASA_API-0B3D91?style=for-the-badge&logo=nasa&logoColor=white)
-![SpaceDevs API](https://img.shields.io/badge/Data-SpaceDevs-FF4136?style=for-the-badge&logo=spacex&logoColor=white)
-![SolarSystem API](https://img.shields.io/badge/Data-SolarSystem-FFD700?style=for-the-badge&logo=google-planet&logoColor=black)
+![JSON](https://img.shields.io/badge/Data_Format-JSON-000000?style=for-the-badge&logo=json&logoColor=white)
 
 ---
 
