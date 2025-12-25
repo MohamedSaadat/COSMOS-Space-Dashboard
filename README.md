@@ -47,3 +47,16 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 - 🧪 **Advanced Filtering:** Ability to explore specific planetary data based on scientific categories and planetary properties.
   
 ---
+
+## 🧰 Tech Stack
+
+| Technology            | Purpose                                                                 |
+| --------------------- | ----------------------------------------------------------------------- |
+| **HTML5** | Semantic structure for accessibility and SEO.                          |
+| **Tailwind CSS** | Modern styling using utility-first classes and Dark Mode integration.   |
+| **JavaScript (ES6+)** | Handling Carousel logic, Event Listeners, and LocalStorage API.        |
+| **Fetch API** | Communicating with remote servers to retrieve real-time space data.       |
+| **JSON** | Parsing and organizing complex data structures from API responses.       |
+| **GitHub Pages** | Hosting the live production version of the project.                    |
+
+---
