@@ -37,3 +37,13 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 - **Planets Section** An interactive guide to our solar system powered by the Solar System OpenData API. This section presents all planets with key astronomical data such as gravity, dimensions, and orbital details in a visually appealing and organized layout.
 
 ---
+
+## 🎨 Features
+
+- 📡 **Live Data Integration:** Seamlessly fetching real-time astronomical data using RESTful APIs.
+- 📱 **Responsive Grid System:** A fully fluid layout designed with Tailwind CSS for mobile, tablet, and desktop.
+- 🔍 **Interactive Modals:** Detailed views for planets and space missions without leaving the main dashboard.
+- ⚡ **Modern UI Feedback:** Implementation of loading states and error handling for a robust user experience.
+- 🧪 **Advanced Filtering:** Ability to explore specific planetary data based on scientific categories and planetary properties.
+  
+---
