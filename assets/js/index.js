@@ -34,8 +34,21 @@ todayTabBTN.addEventListener("click", () => {
   planetsTabBTN.classList.remove("bg-blue-500/10", "text-blue-400");
   planetsTabBTN.classList.add("text-slate-300", "hover:bg-slate-800");
 });
-// --------------- API -----------------------------
-
+// --------------- API by readystatechange ----------
+var todayHTTP = new XMLHttpRequest();
+todayHTTP.open(
+  "get",
+  "https://api.nasa.gov/planetary/apod?api_key=Kyp02C9Jv6T28ojM4MYUy1to9tPdsdsOUsLtvPCo&date=2025-12-29"
+);
+todayHTTP.send();
+var todayArray = [];
+todayHTTP.responseType = "json";
+todayHTTP.addEventListener("readystatechange", () => {
+  if (todayHTTP.readyState == 4) {
+    todayArray = todayHTTP.response;
+    // console.log(todayArray);
+  }
+});
 // ---------------- [2] Launches -------------------
 // --------------- Initialization ------------------
 var launchesTAB = document.getElementById("launchesTAB");
@@ -55,8 +68,19 @@ launchesTabBTN.addEventListener("click", () => {
   planetsTabBTN.classList.remove("bg-blue-500/10", "text-blue-400");
   planetsTabBTN.classList.add("text-slate-300", "hover:bg-slate-800");
 });
-// --------------- API -----------------------------
-
+// --------------- API by load ---------------------
+var launchesHTTP = new XMLHttpRequest();
+launchesHTTP.open(
+  "get",
+  "https://lldev.thespacedevs.com/2.3.0/launches/upcoming/?limit=10"
+);
+launchesHTTP.send();
+var launchesArray = [];
+launchesHTTP.responseType = "json";
+launchesHTTP.addEventListener("load", () => {
+  launchesArray = launchesHTTP.response;
+  // console.log(launchesArray);
+});
 // ---------------- [3] Planets --------------------
 // --------------- Initialization ------------------
 var planetsTAB = document.getElementById("planetsTAB");
@@ -76,7 +100,7 @@ planetsTabBTN.addEventListener("click", () => {
   planetsTabBTN.classList.add("bg-blue-500/10", "text-blue-400");
   planetsTabBTN.classList.remove("text-slate-300", "hover:bg-slate-800");
 });
-// --------------- API -----------------------------
+// --------------- API by -----------------------------
 var PlanetsHTTP = new XMLHttpRequest();
 PlanetsHTTP.open(
   "get",
