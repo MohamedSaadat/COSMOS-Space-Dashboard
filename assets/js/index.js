@@ -46,12 +46,7 @@ todayHTTP.responseType = "json";
 todayHTTP.addEventListener("readystatechange", () => {
   if (todayHTTP.readyState == 4) {
     todayArray = todayHTTP.response;
-    apodImage.src =
-      "https://apod.nasa.gov/apod/image/2512/ArtificialComet_Chao_1080.jpg";
-    apodImage.setAttribute(
-      "src",
-      "https://apod.nasa.gov/apod/image/2512/ArtificialComet_Chao_1080.jpg"
-    );
+    apodImage.src = todayArray.hdurl;
     apodTitle.innerHTML = todayArray.title;
     apodDate.innerHTML = `<i class="far fa-calendar mr-2"></i>${date(
       todayArray.date
@@ -98,11 +93,14 @@ function time(apiTime) {
 function allUpcomingLaunches() {
   var AllUpcomingLaunches = ``;
   for (let i = 1; i < launchesArray.results.length; i++) {
+    // console.log(launchesArray.results[i].pad.location.image.image_url);
     AllUpcomingLaunches += `<!-- STATIC LAUNCH CARD ${i} -->
           <div
             class="bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden hover:border-blue-500/30 transition-all group cursor-pointer">
-            <div class="relative h-48 bg-slate-900/50 flex items-center justify-center">
-              <i class="fas fa-space-shuttle text-5xl text-slate-700"></i>
+            <div class="relative h-48 bg-slate-900/50 flex items-center justify-center overflow-hidden">
+              <img src="${
+                launchesArray.results[i].pad.location.image.image_url
+              }" alt="">
               <div class="absolute top-3 right-3">
                 <span class="px-3 py-1 bg-green-500/90 text-white backdrop-blur-sm rounded-full text-xs font-semibold">
                   ${launchesArray.results[i].status.abbrev}
@@ -122,19 +120,27 @@ function allUpcomingLaunches() {
               <div class="space-y-2 mb-4">
                 <div class="flex items-center gap-2 text-sm">
                   <i class="fas fa-calendar text-slate-500 w-4"></i>
-                  <span class="text-slate-300">${date(launchesArray.results[i].net)}</span>
+                  <span class="text-slate-300">${date(
+                    launchesArray.results[i].net
+                  )}</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                   <i class="fas fa-clock text-slate-500 w-4"></i>
-                  <span class="text-slate-300">${time(launchesArray.results[i].net)} UTC</span>
+                  <span class="text-slate-300">${time(
+                    launchesArray.results[i].net
+                  )} UTC</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                   <i class="fas fa-rocket text-slate-500 w-4"></i>
-                  <span class="text-slate-300">${launchesArray.results[i].rocket.configuration.name}</span>
+                  <span class="text-slate-300">${
+                    launchesArray.results[i].rocket.configuration.name
+                  }</span>
                 </div>
                 <div class="flex items-center gap-2 text-sm">
                   <i class="fas fa-map-marker-alt text-slate-500 w-4"></i>
-                  <span class="text-slate-300 line-clamp-1">${launchesArray.results[i].pad.location.name}</span>
+                  <span class="text-slate-300 line-clamp-1">${
+                    launchesArray.results[i].pad.location.name
+                  }</span>
                 </div>
               </div>
               <div class="flex items-center gap-2 pt-4 border-t border-slate-700">
@@ -194,9 +200,10 @@ launchesHTTP.addEventListener("load", () => {
   launchCountry.innerHTML = launchesArray.results[0].pad.country.name;
   launchMissionDescription.innerHTML =
     launchesArray.results[0].mission.description;
-  launchImg.innerHTML = `<img src="assets/images/launch-placeholder.png" alt="">`;
-  allUpcomingLaunches()
+  launchImg.innerHTML = `<img src="${launchesArray.results[0].pad.location.image.image_url}" alt="">`;
+  allUpcomingLaunches();
 });
+
 // --------------- Event ---------------------------
 launchesTabBTN.addEventListener("click", () => {
   todayTAB.classList.add("hidden");
@@ -216,6 +223,54 @@ launchesTabBTN.addEventListener("click", () => {
 // --------------- Initialization ------------------
 var planetsTAB = document.getElementById("planetsTAB");
 var planetsTabBTN = document.getElementById("planetsTabBTN");
+var planetsGrid = document.getElementById("planets-grid");
+var planetDetailName = document.getElementById("planet-detail-name");
+var planetDetailDescription = document.getElementById(
+  "planet-detail-description"
+);
+var planetDistance = document.getElementById("planet-distance");
+// --------------- API by fetch -----------------------------
+async function Planets() {
+  var PlanetsHTTP = await fetch(
+    "https://solar-system-opendata-proxy.vercel.app/api/planets"
+  );
+  var PlanetsHttpResponse = await PlanetsHTTP.json();
+  return PlanetsHttpResponse.bodies;
+}
+var PlanetArray;
+Planets().then((bodies) => {
+  PlanetArray = bodies;
+  var AllPlanetsGrid = ``;
+  for (let i = 0; i < PlanetArray.length; i++) {
+    AllPlanetsGrid += `
+    <!-- ${PlanetArray[i].englishName} -->
+          <div
+            class="planet-card bg-slate-800/50 border border-slate-700 rounded-2xl p-4 transition-all cursor-pointer group"
+            data-planet-id="mercury" style="--planet-color: #eab308" onmouseover="this.style.borderColor='#eab30880'"
+            onmouseout="this.style.borderColor='#334155'">
+            <div class="relative mb-3 h-24 flex items-center justify-center">
+              <img class="w-20 h-20 object-contain group-hover:scale-110 transition-transform"
+                src=${PlanetArray[i].image} />
+            </div>
+            <h4 class="font-semibold text-center text-sm">${
+              PlanetArray[i].englishName
+            }</h4>
+            <p class="text-xs text-slate-400 text-center">${(
+              PlanetArray[i].semimajorAxis / PlanetArray[6].semimajorAxis
+            ).toFixed(2)} AU</p>
+          </div>
+    `;
+    planetsGrid.innerHTML = AllPlanetsGrid;
+    if (PlanetArray[i].englishName == "Earth") {
+      planetDetailName.innerHTML = PlanetArray[i].englishName;
+      planetDetailDescription.innerHTML = PlanetArray[i].description;
+      planetDistance.innerHTML = `${(
+        PlanetArray[6].semimajorAxis / 1000000
+      ).toFixed(1)}M km`;
+    }
+  }
+  console.log();
+});
 // --------------- Event ---------------------------
 planetsTabBTN.addEventListener("click", () => {
   todayTAB.classList.add("hidden");
@@ -231,14 +286,6 @@ planetsTabBTN.addEventListener("click", () => {
   planetsTabBTN.classList.add("bg-blue-500/10", "text-blue-400");
   planetsTabBTN.classList.remove("text-slate-300", "hover:bg-slate-800");
 });
-// --------------- API by fetch -----------------------------
-async function Planets() {
-  var PlanetsHTTP = await fetch(
-    "https://solar-system-opendata-proxy.vercel.app/api/planets"
-  );
-  var PlanetsHttpResponse = await PlanetsHTTP.json();
-}
-Planets();
 
 /*
 mercury
