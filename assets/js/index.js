@@ -257,6 +257,66 @@ function earth(index) {
   planetBodyType.innerHTML = PlanetArray[index].bodyType;
   planetVolume.innerHTML = `${PlanetArray[index].vol.volValue} × 10^${PlanetArray[index].vol.volExponent} km³`;
   selectedPlanet(index);
+  planetFacts.innerHTML = `
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Mass: ${
+          PlanetArray[index].mass.massValue
+        } × 10^${PlanetArray[index].mass.massExponent} kg</span>
+      </li>
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Surface gravity: ${
+          PlanetArray[index].gravity
+        } m/s²</span>
+      </li>
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Density: ${PlanetArray[
+          index
+        ].density.toFixed(2)} g/cm³</span>
+      </li>
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Axial tilt: ${
+          PlanetArray[index].axialTilt
+        }°</span>
+      </li>
+      `;
+      OrbitalCharacteristics.innerHTML = `
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Perihelion</span>
+        <span id="planet-perihelion" class="font-semibold">${(
+        PlanetArray[index].perihelion / 1000000
+      ).toFixed(1)}M km</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Aphelion</span>
+        <span id="planet-aphelion" class="font-semibold">${(
+        PlanetArray[index].aphelion / 1000000
+      ).toFixed(1)}M km</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Eccentricity</span>
+        <span id="planet-eccentricity" class="font-semibold">${PlanetArray[index].eccentricity}</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Inclination</span>
+        <span id="planet-inclination" class="font-semibold">${PlanetArray[index].inclination}°</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Axial Tilt</span>
+        <span id="planet-axial-tilt" class="font-semibold">${PlanetArray[index].axialTilt}°</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Avg Temperature</span>
+        <span id="planet-temp" class="font-semibold">${PlanetArray[index].avgTemp}°C</span>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-slate-400">Escape Velocity</span>
+        <span id="planet-escape" class="font-semibold">${PlanetArray[index].escape} km/s</span>
+      </div>
+      `;
 }
 // --------------- Initialization ------------------
 var planetsTAB = document.getElementById("planetsTAB");
@@ -280,6 +340,8 @@ var planetDiscoverer = document.getElementById("planet-discoverer");
 var planetDiscoveryDate = document.getElementById("planet-discovery-date");
 var planetBodyType = document.getElementById("planet-body-type");
 var planetVolume = document.getElementById("planet-volume");
+var planetFacts = document.getElementById("planet-facts");
+var OrbitalCharacteristics = document.getElementById("OrbitalCharacteristics");
 // --------------- API by fetch -----------------------------
 async function Planets() {
   var PlanetsHTTP = await fetch(
@@ -313,7 +375,7 @@ Planets().then((bodies) => {
     `;
     if (PlanetArray[i].id === "terre") {
       console.log(PlanetArray[i].englishName);
-      earth(i)
+      earth(i);
     }
   }
   planetsGrid.innerHTML = AllPlanetsGrid;
@@ -339,6 +401,66 @@ Planets().then((bodies) => {
       planetBodyType.innerHTML = PlanetArray[i].bodyType;
       planetVolume.innerHTML = `${PlanetArray[i].vol.volValue} × 10^${PlanetArray[i].vol.volExponent} km³`;
       selectedPlanet(i);
+      planetFacts.innerHTML = `
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Mass: ${
+          PlanetArray[i].mass.massValue
+        } × 10^${PlanetArray[i].mass.massExponent} kg</span>
+      </li>
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Surface gravity: ${
+          PlanetArray[i].gravity
+        } m/s²</span>
+      </li>
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Density: ${PlanetArray[i].density.toFixed(
+          2
+        )} g/cm³</span>
+      </li>
+      <li class="flex items-start">
+        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+        <span class="text-slate-300">Axial tilt: ${
+          PlanetArray[i].axialTilt
+        }°</span>
+      </li>
+      `;
+      OrbitalCharacteristics.innerHTML = `
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Perihelion</span>
+        <span id="planet-perihelion" class="font-semibold">${(
+        PlanetArray[i].perihelion / 1000000
+      ).toFixed(1)}M km</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Aphelion</span>
+        <span id="planet-aphelion" class="font-semibold">${(
+        PlanetArray[i].aphelion / 1000000
+      ).toFixed(1)}M km</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Eccentricity</span>
+        <span id="planet-eccentricity" class="font-semibold">${PlanetArray[i].eccentricity}</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Inclination</span>
+        <span id="planet-inclination" class="font-semibold">${PlanetArray[i].inclination}°</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Axial Tilt</span>
+        <span id="planet-axial-tilt" class="font-semibold">${PlanetArray[i].axialTilt}°</span>
+      </div>
+      <div class="flex justify-between items-center py-2 border-b border-slate-700">
+        <span class="text-slate-400">Avg Temperature</span>
+        <span id="planet-temp" class="font-semibold">${PlanetArray[i].avgTemp}°C</span>
+      </div>
+      <div class="flex justify-between items-center py-2">
+        <span class="text-slate-400">Escape Velocity</span>
+        <span id="planet-escape" class="font-semibold">${PlanetArray[i].escape} km/s</span>
+      </div>
+      `;
     });
 
     card.addEventListener("mouseenter", () => {
