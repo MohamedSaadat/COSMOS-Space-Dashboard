@@ -27,6 +27,7 @@ function date(apiDate) {
 // --------------- Initialization ------------------
 var todayTAB = document.getElementById("todayTAB");
 var todayTabBTN = document.getElementById("todayTabBTN");
+var ViewFullResolutionBTN = document.getElementById("ViewFullResolution");
 var apodImage = document.getElementById("apod-image");
 var apodTitle = document.getElementById("apod-title");
 var apodDate = document.getElementById("apod-date-detail");
@@ -71,6 +72,9 @@ todayTabBTN.addEventListener("click", () => {
 
   planetsTabBTN.classList.remove("bg-blue-500/10", "text-blue-400");
   planetsTabBTN.classList.add("text-slate-300", "hover:bg-slate-800");
+});
+ViewFullResolutionBTN.addEventListener("click", () => {
+  window.open(apodImage.src, "_blank");
 });
 // ---------------- [2] Launches -------------------
 function weekdayDate(apiDate) {
@@ -220,15 +224,62 @@ launchesTabBTN.addEventListener("click", () => {
   planetsTabBTN.classList.add("text-slate-300", "hover:bg-slate-800");
 });
 // ---------------- [3] Planets --------------------
+function selectedPlanet(index) {
+  if (PlanetArray[index].moons == null) {
+    planetMoons.innerHTML = 0;
+  } else {
+    planetMoons.innerHTML = PlanetArray[index].moons.length;
+  }
+  if (PlanetArray[index].discoveredBy != "") {
+    planetDiscoverer.innerHTML = PlanetArray[index].discoveredBy;
+  }
+  if (PlanetArray[index].discoveryDate != "") {
+    planetDiscoveryDate.innerHTML = PlanetArray[index].discoveryDate;
+  }
+}
+function earth(index) {
+  planetDetailImage.src = PlanetArray[index].image;
+  planetDetailName.innerHTML = PlanetArray[index].englishName;
+  planetDetailDescription.innerHTML = PlanetArray[index].description;
+  planetDistance.innerHTML = `${(
+    PlanetArray[index].semimajorAxis / 1000000
+  ).toFixed(1)}M km`;
+  planetRadius.innerHTML = `${Math.round(PlanetArray[index].meanRadius)} km`;
+  planetMass.innerHTML = `${PlanetArray[index].mass.massValue} × 10^${PlanetArray[index].mass.massExponent} kg`;
+  planetDensity.innerHTML = `${PlanetArray[index].density.toFixed(2)} g/cm³`;
+  planetOrbitalPeriod.innerHTML = `${PlanetArray[index].sideralOrbit.toFixed(
+    2
+  )} days`;
+  planetRotation.innerHTML = `${PlanetArray[index].sideralRotation.toFixed(
+    2
+  )} hours`;
+  planetGravity.innerHTML = `${PlanetArray[index].gravity} m/s²`;
+  planetBodyType.innerHTML = PlanetArray[index].bodyType;
+  planetVolume.innerHTML = `${PlanetArray[index].vol.volValue} × 10^${PlanetArray[index].vol.volExponent} km³`;
+  selectedPlanet(index);
+}
 // --------------- Initialization ------------------
 var planetsTAB = document.getElementById("planetsTAB");
 var planetsTabBTN = document.getElementById("planetsTabBTN");
 var planetsGrid = document.getElementById("planets-grid");
+var planetCard = document.getElementsByClassName("planet-card");
+var planetDetailImage = document.getElementById("planet-detail-image");
 var planetDetailName = document.getElementById("planet-detail-name");
 var planetDetailDescription = document.getElementById(
   "planet-detail-description"
 );
 var planetDistance = document.getElementById("planet-distance");
+var planetRadius = document.getElementById("planet-radius");
+var planetMass = document.getElementById("planet-mass");
+var planetDensity = document.getElementById("planet-density");
+var planetOrbitalPeriod = document.getElementById("planet-orbital-period");
+var planetRotation = document.getElementById("planet-rotation");
+var planetMoons = document.getElementById("planet-moons");
+var planetGravity = document.getElementById("planet-gravity");
+var planetDiscoverer = document.getElementById("planet-discoverer");
+var planetDiscoveryDate = document.getElementById("planet-discovery-date");
+var planetBodyType = document.getElementById("planet-body-type");
+var planetVolume = document.getElementById("planet-volume");
 // --------------- API by fetch -----------------------------
 async function Planets() {
   var PlanetsHTTP = await fetch(
@@ -256,20 +307,51 @@ Planets().then((bodies) => {
               PlanetArray[i].englishName
             }</h4>
             <p class="text-xs text-slate-400 text-center">${(
-              PlanetArray[i].semimajorAxis / PlanetArray[6].semimajorAxis
+              PlanetArray[i].semimajorAxis / 149598023
             ).toFixed(2)} AU</p>
           </div>
     `;
-    planetsGrid.innerHTML = AllPlanetsGrid;
-    if (PlanetArray[i].englishName == "Earth") {
+    if (PlanetArray[i].id === "terre") {
+      console.log(PlanetArray[i].englishName);
+      earth(i)
+    }
+  }
+  planetsGrid.innerHTML = AllPlanetsGrid;
+  var planetCardArray = [...planetCard];
+  planetCardArray.forEach((card, i) => {
+    card.addEventListener("click", () => {
+      planetDetailImage.src = PlanetArray[i].image;
       planetDetailName.innerHTML = PlanetArray[i].englishName;
       planetDetailDescription.innerHTML = PlanetArray[i].description;
       planetDistance.innerHTML = `${(
-        PlanetArray[6].semimajorAxis / 1000000
+        PlanetArray[i].semimajorAxis / 1000000
       ).toFixed(1)}M km`;
-    }
-  }
-  console.log();
+      planetRadius.innerHTML = `${Math.round(PlanetArray[i].meanRadius)} km`;
+      planetMass.innerHTML = `${PlanetArray[i].mass.massValue} × 10^${PlanetArray[i].mass.massExponent} kg`;
+      planetDensity.innerHTML = `${PlanetArray[i].density.toFixed(2)} g/cm³`;
+      planetOrbitalPeriod.innerHTML = `${PlanetArray[i].sideralOrbit.toFixed(
+        2
+      )} days`;
+      planetRotation.innerHTML = `${PlanetArray[i].sideralRotation.toFixed(
+        2
+      )} hours`;
+      planetGravity.innerHTML = `${PlanetArray[i].gravity} m/s²`;
+      planetBodyType.innerHTML = PlanetArray[i].bodyType;
+      planetVolume.innerHTML = `${PlanetArray[i].vol.volValue} × 10^${PlanetArray[i].vol.volExponent} km³`;
+      selectedPlanet(i);
+    });
+
+    card.addEventListener("mouseenter", () => {
+      var dataPlanetId = card.getAttribute("data-planet-id");
+      if (PlanetArray[i].id === dataPlanetId) {
+        console.log("ok");
+        card.setAttribute(
+          "style",
+          "--planet-color: #ef4444; border-color: rgba(239, 68, 68, 0.5);"
+        );
+      }
+    });
+  });
 });
 // --------------- Event ---------------------------
 planetsTabBTN.addEventListener("click", () => {
