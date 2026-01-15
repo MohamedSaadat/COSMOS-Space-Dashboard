@@ -19,7 +19,7 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 
 ---
 
-##📌 Project Overview
+## 📌 Project Overview
 
 **The purpose of this project:**
 - Asynchronous Data Fetching: Master the use of Fetch API to integrate multiple third-party services (NASA, SpaceDevs, and Solar System OpenData).
