@@ -1,4 +1,4 @@
-# 🌌 COSMOS-Space-Dashboard Space Explorer Portal
+## 🌌 COSMOS-Space-Dashboard Space Explorer Portal
 
 This project is a dynamic Space Exploration Dashboard designed to showcase advanced front-end development and asynchronous programming skills. It provides a real-time gateway to space data, transforming complex API responses into an engaging and interactive user experience.
 
@@ -19,7 +19,7 @@ This project is a dynamic Space Exploration Dashboard designed to showcase advan
 
 ---
 
-📌 Project Overview
+##📌 Project Overview
 
 **The purpose of this project:**
 - Asynchronous Data Fetching: Master the use of Fetch API to integrate multiple third-party services (NASA, SpaceDevs, and Solar System OpenData).
